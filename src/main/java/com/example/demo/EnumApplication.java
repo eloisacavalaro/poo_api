@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,20 @@ public class EnumApplication {
             System.out.println("Você escolheu: " + ufEscolhida.getNomePorExtenso());
         } catch (IllegalArgumentException e) {
             System.out.println("UF não encontrada: " + ufInput);
+        }
+
+        System.out.println("Digite uma região : ");
+       
+        String regiaoInput = sc.nextLine();
+
+        try{
+            List<UnidadeFederativa> ufRegiao = UnidadeFederativa.fromRegiao(regiaoInput);
+            System.out.println("Estados da região : " + regiaoInput);
+            for(UnidadeFederativa uf : ufRegiao){
+                System.out.println(uf.name() + " - " + uf.getNomePorExtenso());
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println("Região não encontrada: " + regiaoInput);
         }
 	}
 
